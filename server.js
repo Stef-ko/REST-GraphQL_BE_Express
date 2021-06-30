@@ -1,41 +1,42 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const mongoose = require("mongoose");
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const mongoose = require('mongoose')
 
-const app = express();
+const app = express()
 
 var corsOptions = {
-  origin: "http://localhost:3000",
-};
+  // origin: 'http://localhost:3000',
+  origin: 'https://eager-northcutt-ae83d1.netlify.app/',
+}
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions))
 
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }))
 
-app.get("/", (req, res) => {
-  res.json({ message: "Application running" });
-});
+app.get('/', (req, res) => {
+  res.json({ message: 'Application running' })
+})
 
-require("./app/routes/post.routes")(app);
+require('./app/routes/post.routes')(app)
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
-  console.log(`Express Server running at http://localhost:${PORT}/`);
-});
+  console.log(`Express Server running at http://localhost:${PORT}/`)
+})
 
-const db = require(".");
+const db = require('.')
 mongoose
   .connect(db.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("MongoDB Connected");
+    console.log('MongoDB Connected')
   })
   .catch((err) => {
-    console.log("Cannot connect to database", err);
-    process.exit();
-  });
+    console.log('Cannot connect to database', err)
+    process.exit()
+  })
