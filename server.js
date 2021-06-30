@@ -7,10 +7,11 @@ const app = express()
 
 var corsOptions = {
   // origin: 'http://localhost:3000',
-  origin: 'https://eager-northcutt-ae83d1.netlify.app',
+  // origin: 'https://eager-northcutt-ae83d1.netlify.app',
+  origin: '*',
 }
 
-// app.use(cors(corsOptions))
+app.use(cors(corsOptions))
 
 app.use(bodyParser.json())
 
