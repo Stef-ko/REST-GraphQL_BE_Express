@@ -10,7 +10,7 @@ var corsOptions = {
   origin: 'https://eager-northcutt-ae83d1.netlify.app',
 }
 
-app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
 
 app.use(bodyParser.json())
 
