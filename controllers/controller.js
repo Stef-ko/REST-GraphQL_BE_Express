@@ -8,7 +8,7 @@ exports.create = (req, res) => {
     return
   }
   if (!req.body.username) {
-    res.status(400).send({ message: 'Username must not be empty' })
+    res.status(400).send({ message: 'Username must not be empty', req })
     return
   }
   const newPost = new Post({
