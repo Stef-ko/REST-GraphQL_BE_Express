@@ -2,18 +2,17 @@ const Post = require('../models/Post')
 // const Post = db.Post;
 
 exports.create = (req, res) => {
-  console.log('Post created via REST')
-  if (!req.body.body) {
+  if (!req.body.body.postBody) {
     res.status(400).send({ message: 'Post must not be empty' })
     return
   }
-  if (!req.body.username) {
+  if (!req.body.body.username) {
     res.status(400).send({ message: 'Username must not be empty' })
     return
   }
   const newPost = new Post({
-    body: req.body.postBody,
-    username: req.body.username,
+    body: req.body.body.postBody,
+    username: req.body.body.username,
     createdAt: new Date().toISOString(),
   })
 
@@ -27,6 +26,7 @@ exports.create = (req, res) => {
         message: err.message || 'Error while saving post',
       })
     })
+  console.log('Post created via REST')
   return newPost
 }
 
